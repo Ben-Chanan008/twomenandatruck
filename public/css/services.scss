@@ -1,0 +1,12 @@
+.hero-img{
+    height: 500px;
+    background-image: url('../images/moving.webp');
+    background-size: cover;
+    background-position: 50% 30%;
+}
+
+img{
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+}

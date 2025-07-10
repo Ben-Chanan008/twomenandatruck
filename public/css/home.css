@@ -1,0 +1,30 @@
+.span {
+  animation: slideLeft 1.3s ease-in-out;
+}
+
+#services .service {
+  transition: all 0.3s ease-in-out;
+}
+#services .service:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+#services button {
+  transition: transform 0.3s ease-in-out;
+}
+#services button:hover {
+  transform: scale(0.98);
+}
+
+#location {
+  background-image: url("../images/city.jpg");
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.hero-img {
+  height: 500px;
+  background-image: url("../images/movers.jpg");
+  background-size: cover;
+  background-position: 50% 30%;
+}/*# sourceMappingURL=home.css.map */

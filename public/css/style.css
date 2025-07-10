@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Quicksand:wght@300..700&display=swap");
+@keyframes scaleUp {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes fallDown {
+  from {
+    transform: translateY(-25%);
+    opacity: 0.2;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes btnScale {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.98);
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .hero-img {
+    width: 100%;
+  }
+  .btn {
+    padding: 5px 34px !important;
+    border: 2px solid var(--white) !important;
+    border-radius: 2rem !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+  .btn:hover {
+    transform: scale(0.98) !important;
+    background-color: var(--white) !important;
+    color: var(--black) !important;
+  }
+}
+.anton {
+  font-family: "Anton", serif;
+}
+
+body {
+  font-family: "Quicksand", serif;
+  font-optical-sizing: auto;
+  min-height: 100vh;
+  overflow-x: hidden !important;
+  font-style: normal;
+}
+
+.overlay {
+  background-color: var(--black);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.text-shadow {
+  text-shadow: var(--bg-tertiary) 1px 3px 5px;
+}
+
+.line {
+  background-color: var(--white);
+  height: inherit;
+  width: 1.9px;
+  animation: scaleUp 1.3s ease-in-out;
+}
+
+.header {
+  animation: fallDown 1.3s ease-in-out;
+}
+
+.btn {
+  padding: 1px 16px;
+  border: 2px solid var(--white);
+  border-radius: 2rem;
+  transition: all 0.3s ease-in-out;
+}
+.btn:hover {
+  transform: scale(0.98);
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.circles {
+  background-color: var(--bg-tertiary);
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+.form-control {
+  box-shadow: none !important;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-control-check {
+  width: 100px !important;
+  accent-color: #ff0000;
+  display: none;
+}
+.form-control-check:checked + .box-content {
+  background-color: var(--bg-tertiary);
+}
+.form-control-check:checked + .box-content::before {
+  transform: translateX(80%);
+}
+
+input.floating {
+  width: 350px;
+  border: 2px solid var(--bg-tertiary) !important;
+  border-radius: 0.3em;
+}
+input.floating ~ .float-label {
+  position: absolute;
+  top: 15.5px;
+  left: 17.5px;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.5;
+  text-align: center;
+}
+input.floating:not(:-moz-placeholder-shown) {
+  border: 2px solid var(--bg-tertiary) !important;
+  outline: none;
+}
+input.floating:focus, input.floating:not(:placeholder-shown) {
+  border: 2px solid var(--bg-tertiary) !important;
+  outline: none;
+}
+input.floating:not(:-moz-placeholder-shown) ~ .float-label {
+  font-size: 13px;
+  margin-inline: 5px;
+  padding: 0 5px;
+  transform: translateY(-26px);
+  background-color: #fff;
+  color: var(--bg-tertiary);
+  display: inline-block;
+  opacity: 1;
+}
+input.floating:focus ~ .float-label, input.floating:not(:placeholder-shown) ~ .float-label {
+  font-size: 13px;
+  margin-inline: 5px;
+  padding: 0 5px;
+  transform: translateY(-26px);
+  background-color: #fff;
+  color: var(--bg-tertiary);
+  display: inline-block;
+  opacity: 1;
+}
+
+.box-content {
+  margin-bottom: 5px;
+  position: relative;
+  height: 30px;
+  cursor: pointer;
+  width: 50px;
+  border-radius: 3rem;
+  background-color: var(--black);
+  transition: 0.2s ease-in-out;
+  display: block;
+}
+.box-content::before {
+  content: "";
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  position: absolute;
+  margin: 2.5px;
+  background-color: #fff;
+  transition: 0.2s ease-in-out;
+}
+
+.loader {
+  transition: all 1s ease-in-out;
+}
+.loader .type {
+  animation: blink 1.12s infinite;
+}/*# sourceMappingURL=style.css.map */

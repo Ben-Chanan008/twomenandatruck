@@ -1,0 +1,16 @@
+@media screen and (min-width: 768px) {
+    .hero-img{
+        width: 100% ;
+    } 
+    .btn{
+        padding: 5px 34px !important;
+        border: 2px solid var(--white) !important;
+        border-radius: 2rem !important;
+        transition: all .3s ease-in-out !important;
+        &:hover{
+            transform: scale(0.98) !important;
+            background-color: var(--white) !important;
+            color: var(--black) !important;
+        }   
+    }  
+}
