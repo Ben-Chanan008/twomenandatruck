@@ -2,6 +2,7 @@ const sidebarBtn = document.querySelector('button.sidebar-btn');
 const sidebar = document.querySelector('.sidebar');
 const splide = document.querySelector('.splide');
 const closeBtn = document.querySelector('.close-btn');
+const checkBox = document.querySelector('input.check-box');
 
 if(sidebarBtn && closeBtn){
     sidebarBtn.addEventListener('click', (e) => {
@@ -29,3 +30,12 @@ if(splide)
             }
         },
     }).mount()
+
+if(checkBox){
+    let checkSlider = document.querySelector('.box-content');
+
+    checkSlider.addEventListener('click', (e) => {
+        console.log([e.currentTarget(), checkBox.checked]);
+        checkBox.checked = !checkBox.checked;
+    });
+}

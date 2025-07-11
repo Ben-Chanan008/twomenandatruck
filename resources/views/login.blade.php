@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group flex flex-row mt-4 items-center">
                             <div>
-                                <input type="checkbox" id="check" class="form-control-check">
+                                <input type="checkbox" id="check" class="form-control-check" name="remember_me">
                                 <label for="check" class="box-content"></label>
                             </div>
                             <span class="text-sm font-semibold ms-2">Remember Me</span>

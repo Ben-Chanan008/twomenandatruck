@@ -19,6 +19,13 @@ export default {
             },
             screens: {
                 'xs': '500px'
+            },
+            gridTemplateColumns: {
+                '1/3': '300px 3fr',
+                'auto': '1fr auto'
+            },
+            gridTemplateRows: {
+                'auto': '1fr auto'
             }
         },
     },

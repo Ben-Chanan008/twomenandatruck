@@ -1,3 +1,3 @@
 <x-base-struct>
-    <x-dashboard-navbar />
+    {{ dd($quotes) }}
 </x-base-struct>

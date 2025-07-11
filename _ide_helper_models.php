@@ -50,6 +50,39 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $user_id
+ * @property string $quote_number
+ * @property string $quote_name
+ * @property string $price_total
+ * @property int $email_sent
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote whereEmailSent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote wherePriceTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote whereQuoteName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote whereQuoteNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Quote withoutTrashed()
+ */
+	class Quote extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $role
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -137,6 +170,51 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $service
+ * @property string $service_category
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ServiceDetail> $serviceDetails
+ * @property-read int|null $service_details_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service whereService($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service whereServiceCategory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Service withoutTrashed()
+ */
+	class Service extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property-read \App\Models\Service|null $service
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ServiceDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ServiceDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ServiceDetail onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ServiceDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ServiceDetail withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ServiceDetail withoutTrashed()
+ */
+	class ServiceDetail extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $module_id
  * @property string $sub_module
  * @property string|null $description
@@ -179,6 +257,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Quote> $quotes
+ * @property-read int|null $quotes_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
  * @property-read int|null $roles_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])

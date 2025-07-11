@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +22,9 @@ Route::get('app/signout', [AuthController::class, 'logout'])->name('logout')->mi
 Route::post('app/onboarding', [AuthController::class, 'onboarding'])->name('sign-up');
 Route::post('app/login', [AuthController::class, 'auth'])->name('sign-in');
 
-Route::view('app/dashboard', 'dashboard')->name('dashboard')->middleware('user-access');
+Route::view('app/dashboard', 'admin.dashboard')->name('dashboard')->middleware('user-access');
 
+Route::post('app/quote/{user}/create', [QuoteController::class, 'store'])->name('quote.store')->middleware('user-access');
+
+Route::get('app/admin/quotes', [QuoteController::class, 'index'])->name('admin.quote.index')->middleware('user-access');
 // Route::resource('app/user', AuthController::class);
