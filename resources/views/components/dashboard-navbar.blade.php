@@ -11,10 +11,12 @@
                 <p class="font-semibold">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
             </div>
             <div class="mt-16 grid grid-cols-1 gap-4">
-                <div class="bg-gray-200 rounded-md p-3">
-                    <i class="far fa-chart-mixed"></i>
-                    <span class="ml-3 font-semibold">Dashboard</span>
-                </div>
+                <a href="{{ route('dashboard') }}">
+                    <div class="bg-gray-200 rounded-md p-3 {{ activeLink(route('dashboard'), 'bg-gray-300') }}">
+                        <i class="far fa-chart-mixed"></i>
+                        <span class="ml-3 font-semibold">Dashboard</span>
+                    </div>
+                </a>
                 <div class="bg-gray-200 rounded-md p-3">
                     <i class="far fa-user-secret"></i>
                     <span class="ml-3 font-semibold">User</span>
@@ -24,7 +26,7 @@
                     <span class="ml-3 font-semibold">Jobs</span>
                 </div>
                 <a href="{{ route('admin.quote.index') }}">
-                    <div class="bg-gray-200 rounded-md p-3">
+                    <div class="bg-gray-200 rounded-md p-3 {{ activeLink(route('admin.quote.index'), '!bg-gray-300') }}">
                         <i class="far fa-business-time"></i>
                         <span class="ml-3 font-semibold">Quotes</span>
                     </div>
@@ -35,5 +37,7 @@
             <a href="" class="text-red-600"><i class="far fa-arrow-right-to-line"></i> <span class="ml-3">Sign Out</span></a>
         </div>
     </div>
-    {{ $slot }}
+    <div class="overflow-y-auto">
+        {{ $slot }}
+    </div>
 </nav>

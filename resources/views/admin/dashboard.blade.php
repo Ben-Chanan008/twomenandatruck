@@ -1,7 +1,7 @@
 <x-base-struct>
     <x-popup />
     <x-dashboard-navbar>
-        <div class="p-4 h-full overflow-y-auto">
+        <div class="p-4 mb-8">
             <section class="w-full flex justify-between">
                 <button>
                     <i class="far fa-search"></i>
@@ -117,15 +117,15 @@
                     <i class="far fa-podcast"></i> 
                     <p class="inline mx-2">Media Platforms</p>
                     <div class="flex gap-4 justify-center my-8">
-                        <i class="fab fa-facebook fa-4x bg-black text-white px-4 rounded-lg"></i>
-                        <i class="fab fa-instagram fa-4x bg-black text-white px-4 rounded-lg"></i>
-                        <i class="fab fa-reddit fa-4x bg-black text-white px-4 rounded-lg"></i>
-                        <i class="fab fa-twitter fa-4x bg-black text-white px-4 rounded-lg"></i>
-                        <i class="fab fa-cc-apple-pay fa-4x bg-black text-white px-4 rounded-lg"></i>
-                        <i class="fab fa-microsoft fa-4x bg-black text-white px-4 rounded-lg"></i>
-                        <i class="far fa-watch-fitness fa-4x bg-black text-white px-4 rounded-lg"></i>
-                        <i class="fab fa-google-plus-g fa-4x bg-black text-white px-4 rounded-lg"></i>
-                        <i class="fab fa-google-wallet fa-4x bg-black text-white px-4 rounded-lg"></i>
+                        <i class="fab fa-facebook xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="fab fa-instagram xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="fab fa-reddit xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="fab fa-twitter xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="fab fa-cc-apple-pay xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="fab fa-microsoft xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="far fa-watch-fitness xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="fab fa-google-plus-g xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="fab fa-google-wallet xl:fa-4x fa-3x text-white rounded-lg"></i>
                     </div>
                 </div>
             </section>

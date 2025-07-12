@@ -2055,19 +2055,21 @@ namespace PHPSTORM_META {
 'tinker.dont_alias',);
         registerArgumentsSet('middleware', 
 'web','api',);
-        registerArgumentsSet('routes', 'home','moving','us','sign-up',
-'storage.local',);
+        registerArgumentsSet('routes', 'home','moving','us','signup.view',
+'signin.view','logout','sign-up','sign-in','dashboard',
+'quote.store','admin.quote.index','storage.local',);
         registerArgumentsSet('views', 
-'about','components.base-struct','components.button','components.circles','components.footer',
-'components.gold-button','components.navbar','components.side-bar','home','onboarding',
-'services.moving','team','laravel-exceptions-renderer::components.card','laravel-exceptions-renderer::components.context','laravel-exceptions-renderer::components.editor',
-'laravel-exceptions-renderer::components.header','laravel-exceptions-renderer::components.icons.chevron-down','laravel-exceptions-renderer::components.icons.chevron-up','laravel-exceptions-renderer::components.icons.computer-desktop','laravel-exceptions-renderer::components.icons.moon',
-'laravel-exceptions-renderer::components.icons.sun','laravel-exceptions-renderer::components.layout','laravel-exceptions-renderer::components.navigation','laravel-exceptions-renderer::components.theme-switcher','laravel-exceptions-renderer::components.trace',
-'laravel-exceptions-renderer::components.trace-and-editor','laravel-exceptions-renderer::show','laravel-exceptions::401','laravel-exceptions::402','laravel-exceptions::403',
-'laravel-exceptions::404','laravel-exceptions::419','laravel-exceptions::429','laravel-exceptions::500','laravel-exceptions::503',
-'laravel-exceptions::layout','laravel-exceptions::minimal','notifications::email','pagination::bootstrap-4','pagination::bootstrap-5',
-'pagination::default','pagination::semantic-ui','pagination::simple-bootstrap-4','pagination::simple-bootstrap-5','pagination::simple-default',
-'pagination::simple-tailwind','pagination::tailwind',);
+'about','admin.dashboard','admin.quote','components.base-struct','components.button',
+'components.circles','components.dashboard-navbar','components.footer','components.gold-button','components.msg',
+'components.navbar','components.popup','components.side-bar','dashboard','home',
+'login','onboarding','services.moving','team','laravel-exceptions-renderer::components.card',
+'laravel-exceptions-renderer::components.context','laravel-exceptions-renderer::components.editor','laravel-exceptions-renderer::components.header','laravel-exceptions-renderer::components.icons.chevron-down','laravel-exceptions-renderer::components.icons.chevron-up',
+'laravel-exceptions-renderer::components.icons.computer-desktop','laravel-exceptions-renderer::components.icons.moon','laravel-exceptions-renderer::components.icons.sun','laravel-exceptions-renderer::components.layout','laravel-exceptions-renderer::components.navigation',
+'laravel-exceptions-renderer::components.theme-switcher','laravel-exceptions-renderer::components.trace','laravel-exceptions-renderer::components.trace-and-editor','laravel-exceptions-renderer::show','laravel-exceptions::401',
+'laravel-exceptions::402','laravel-exceptions::403','laravel-exceptions::404','laravel-exceptions::419','laravel-exceptions::429',
+'laravel-exceptions::500','laravel-exceptions::503','laravel-exceptions::layout','laravel-exceptions::minimal','notifications::email',
+'pagination::bootstrap-4','pagination::bootstrap-5','pagination::default','pagination::semantic-ui','pagination::simple-bootstrap-4',
+'pagination::simple-bootstrap-5','pagination::simple-default','pagination::simple-tailwind','pagination::tailwind',);
         registerArgumentsSet('translations', 
 'auth.failed','auth.password','auth.throttle','pagination.previous','pagination.next',
 'passwords.reset','passwords.sent','passwords.throttled','passwords.token','passwords.user',

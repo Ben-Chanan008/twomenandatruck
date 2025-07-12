@@ -24,6 +24,7 @@ namespace App\Models{
  * @property int $is_active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SubModule> $subModules
  * @property-read int|null $sub_modules_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Module newModelQuery()
@@ -31,6 +32,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Module onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Module query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Module whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Module whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Module whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Module whereHasCreate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Module whereHasDelete($value)
@@ -54,7 +56,7 @@ namespace App\Models{
  * @property string $quote_number
  * @property string $quote_name
  * @property string $price_total
- * @property int $email_sent
+ * @property int|null $email_sent
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
