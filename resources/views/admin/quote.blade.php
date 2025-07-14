@@ -1,6 +1,13 @@
 <x-base-struct page="Quotes Admin">
+    <x-popup />
     <x-dashboard-navbar>
-        <p class="mt-8 p-8 text-2xl">Quotes</p>
+        <div class="flex justify-between items-center">
+            <p class="mt-8 p-8 text-2xl">Quotes</p>
+            <a class="hover:bg-gray-800 hover:cursor-pointer hover:text-white transition-all bg-gold p-4 rounded-lg m-8" href="{{ route('admin.quote.create') }}">
+                <i class="far fa-plus mr-2"></i>
+                 Create Quote
+            </a>
+        </div>
         @unless ($quotes->isEmpty())            
             <div class="relative overflow-x-auto px-8">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

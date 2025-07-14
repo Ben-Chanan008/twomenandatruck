@@ -13,6 +13,6 @@ class Service extends Model
 
     public function serviceDetails(): HasMany
     {
-        return $this->hasMany(ServiceDetail::class);
+        return $this->hasMany(ServicesDetail::class);
     }
 }

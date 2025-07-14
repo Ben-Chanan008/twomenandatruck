@@ -22,9 +22,16 @@ Route::get('app/signout', [AuthController::class, 'logout'])->name('logout')->mi
 Route::post('app/onboarding', [AuthController::class, 'onboarding'])->name('sign-up');
 Route::post('app/login', [AuthController::class, 'auth'])->name('sign-in');
 
-Route::view('app/dashboard', 'admin.dashboard')->name('dashboard')->middleware('user-access');
+Route::middleware('user-access')->group(function (){
+    Route::view('app/dashboard', 'admin.dashboard')->name('dashboard');
 
-Route::post('app/quote/{user}/create', [QuoteController::class, 'store'])->name('quote.store')->middleware('user-access');
+    Route::get('app/admin/quote/create', [QuoteController::class, 'showAdminQuote'])->name('admin.quote.create');
 
-Route::get('app/admin/quotes', [QuoteController::class, 'index'])->name('admin.quote.index')->middleware('user-access');
-// Route::resource('app/user', AuthController::class);
+    Route::post('app/admin/quote/store', [QuoteController::class, 'adminStore'])->name('admin.quote.store');
+
+    Route::post('app/quote/{user}/store', [QuoteController::class, 'store'])->name('quote.store');
+
+    Route::view('app/quote/create', 'home')->name('quote.create');
+
+    Route::get('app/admin/quotes', [QuoteController::class, 'index'])->name('admin.quote.index');
+});

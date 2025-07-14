@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Quote extends Model
 {
     //
+    protected $guarded = [];
     use SoftDeletes;
 
     public function user(): BelongsTo

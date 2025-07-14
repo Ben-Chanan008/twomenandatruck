@@ -1,4 +1,4 @@
-<x-base-struct>
+<x-base-struct page="Dashboard">
     <x-popup />
     <x-dashboard-navbar>
         <div class="p-4 mb-8">
