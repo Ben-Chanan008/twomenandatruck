@@ -1,9 +1,13 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 <x-base-struct page="Quotes Admin">
     <x-popup />
     <x-dashboard-navbar>
         <div class="flex justify-between items-center">
             <p class="mt-8 p-8 text-2xl">Quotes</p>
-            <a class="hover:bg-gray-800 hover:cursor-pointer hover:text-white transition-all bg-gold p-4 rounded-lg m-8" href="{{ route('admin.quote.create') }}">
+            <a class="hover:bg-gray-800 hover:cursor-pointer transition-colors duration-300 hover:text-white bg-gold p-4 rounded-lg m-8" href="{{ route('admin.quote.create') }}">
                 <i class="far fa-plus mr-2"></i>
                  Create Quote
             </a>
@@ -22,6 +26,9 @@
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Price
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Date Created <i class="far fa-clock"></i>
                             </th>
                         </tr>
                     </thead>
@@ -42,11 +49,19 @@
                                 <td class="px-6 py-4">
                                     {{ getCurrencySymbol('usd', $quote->price_total) }}
                                 </td>
+                                <td class="px-6 py-4">
+                                    {{ Carbon::parse($quote->created_at)->format('gA jS F\, Y') }}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+            
+            <div class="p-4 ">
+                {{ $quotes->links() }}
+            </div>
+            
             @else
             <p class="text-red-500 text-xl font-semibold">No quotes yet</p>
         @endunless

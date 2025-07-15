@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Quote;
 use App\Models\Service;
+use App\Mail\QuoteStored;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ServicesDetail;
+use Illuminate\Support\Facades\Mail;
 
 class QuoteController extends Controller
 {
@@ -31,24 +33,27 @@ class QuoteController extends Controller
             'quote_name' => 'Quote for ' . $user->first_name . ' ' . $user->last_name,
             'price_total' => $price_total,
         ]);
-
-        return redirect()->route('dashboard')->with('showPopup', 'Quote Generated successfully!');
+        // TODO: Send an email when quote has been created successfully!
+        return redirect()->route('home')->with('showPopup', ['message' => 'Quote Generated successfully!','type' => 'success']);
     }
 
+    /**
+     * Method index
+     *
+     * @param Request $request [explicite description]
+     *
+     * Generates the admin route for viewing quotes
+     */
     public function index(Request $request)
     {
         return view('admin.quote', [
-            'quotes' => Quote::all()
+            'quotes' => Quote::latest()->simplePaginate(5)
         ]);
     }
-
-    public function quoteIndex(Request $request)
-    {
-        return view('admin.quote', [
-            'quotes' => Quote::all()
-        ]);
-    }
-
+    
+    /** 
+    * @method showAdminQuote is for showing the create route for admin quote
+    */ 
     public function showAdminQuote(Request $request)
     {
         return view('admin.create-quote', [
@@ -95,6 +100,10 @@ class QuoteController extends Controller
             'price_total' => $prices_total,
         ]);
         //TODO: Send an email to the user to alert him/her; then notify the app.
+        Mail::to($quote->user)->queue(
+            new QuoteStored($quote)
+        );
+
         return redirect()->route('admin.quote.index')->with('showPopup', ['message' => 'Quote successfully created!', 'type' =>'success']);
     }
 }

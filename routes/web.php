@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuoteController;
+use App\Mail\QuoteStored;
+use App\Models\Service;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,9 +31,11 @@ Route::middleware('user-access')->group(function (){
 
     Route::post('app/admin/quote/store', [QuoteController::class, 'adminStore'])->name('admin.quote.store');
 
-    Route::post('app/quote/{user}/store', [QuoteController::class, 'store'])->name('quote.store');
+    Route::post('app/quote/{user}/store', [QuoteController::class, 'store'])->name('quote.store')->withoutMiddleware('user-access');
 
-    Route::view('app/quote/create', 'home')->name('quote.create');
+    Route::view('app/quote/create', 'quote', [
+        'services' => Service::all()
+    ])->name('quote.create');
 
     Route::get('app/admin/quotes', [QuoteController::class, 'index'])->name('admin.quote.index');
 });
