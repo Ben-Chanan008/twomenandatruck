@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\Service;
+use App\Mail\QuoteStored;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuoteController;
-use App\Mail\QuoteStored;
-use App\Models\Service;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AssignJobController;
 
 Route::get('/', function () {
     return view('home');
@@ -38,4 +39,12 @@ Route::middleware('user-access')->group(function (){
     ])->name('quote.create');
 
     Route::get('app/admin/quotes', [QuoteController::class, 'index'])->name('admin.quote.index');
+
+    Route::get('app/admin/assign-jobs/create', [AssignJobController::class, 'create'])->name('assign-jobs.create');
+
+    Route::get('app/admin/assign-jobs/jobs', [AssignJobController::class, 'index'])->name('assign-jobs.index');
+
+    Route::post('app/admin/assign-jobs/store', [AssignJobController::class, 'store'])
+        ->name('assign-jobs.index')
+        ->withoutMiddleware('user-access');
 });

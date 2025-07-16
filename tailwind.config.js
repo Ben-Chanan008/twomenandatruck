@@ -26,6 +26,19 @@ export default {
             },
             gridTemplateRows: {
                 'auto': '1fr auto'
+            },
+            keyframes: {
+                glow: {
+                    '0%, 100%': {
+                        boxShadow: '0 0 5px #3b82f6, 0 0 10px #3b82f6',
+                    },
+                    '50%': {
+                        boxShadow: '0 0 20px #3b82f6, 0 0 40px #3b82f6',
+                    },
+                }
+            },
+            animation: {
+                'glow': 'glow 2s ease-in-out infinite',
             }
         },
     },
