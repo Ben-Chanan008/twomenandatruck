@@ -1,3 +1,0 @@
-<x-base-struct>
-    <x-dashboard-navbar />
-</x-base-struct>

@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Quote::class);
     }
+
+    public function jobSchedules(): BelongsToMany
+    {
+        return $this->belongsToMany(JobSchedule::class, 'assign_job_workers');
+    }
 }

@@ -30,6 +30,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Date Created <i class="far fa-clock"></i>
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                Status <i class="far fa-star"></i>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +54,9 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ Carbon::parse($quote->created_at)->format('gA jS F\, Y') }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <i class="far fa-clock-rotate-left mr-2"></i>{{ 'PENDING'}}
                                 </td>
                             </tr>
                         @endforeach

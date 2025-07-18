@@ -21,10 +21,12 @@
                     <i class="far fa-user-secret"></i>
                     <span class="ml-3 font-semibold">User</span>
                 </div>
-                <div class="bg-gray-200 rounded-md p-3">
-                    <i class="far fa-business-time"></i>
-                    <span class="ml-3 font-semibold">Jobs</span>
-                </div>
+                <a href="{{ route('assign-jobs.index') }}">
+                    <div class="bg-gray-200 rounded-md p-3 {{ activeLink(route('assign-jobs.index'), '!bg-gray-300') }}">
+                        <i class="far fa-business-time"></i>
+                        <span class="ml-3 font-semibold">Jobs</span>
+                    </div>
+                </a>
                 <a href="{{ route('admin.quote.index') }}">
                     <div class="bg-gray-200 rounded-md p-3 {{ activeLink(route('admin.quote.index'), '!bg-gray-300') }}">
                         <i class="far fa-business-time"></i>

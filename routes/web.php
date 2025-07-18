@@ -43,8 +43,8 @@ Route::middleware('user-access')->group(function (){
     Route::get('app/admin/assign-jobs/create', [AssignJobController::class, 'create'])->name('assign-jobs.create');
 
     Route::get('app/admin/assign-jobs/jobs', [AssignJobController::class, 'index'])->name('assign-jobs.index');
-
+    
     Route::post('app/admin/assign-jobs/store', [AssignJobController::class, 'store'])
-        ->name('assign-jobs.index')
+        ->name('assign-jobs.store')
         ->withoutMiddleware('user-access');
 });

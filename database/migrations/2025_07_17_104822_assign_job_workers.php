@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\AssignJob;
+use App\Models\JobSchedule;
 use App\Models\Quote;
+use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,16 +16,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_schedules', function (Blueprint $table) {
+        Schema::create('assign_job_workers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Quote::class)->constrained()->cascadeOnDelete();
-            $table->string('initial_deposit');
-            $table->time('workers_clock_in_time');
-            $table->string('duration');
-            $table->date('booked_for');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->boolean('job_completed');
+            $table->foreignIdFor(JobSchedule::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_schedules');
+        Schema::dropIfExists('assign_job_workers');
     }
 };

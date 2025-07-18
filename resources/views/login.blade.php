@@ -1,4 +1,4 @@
-<x-base-struct>
+<x-base-struct page="Login">
     <div class="grid grid-cols-2 min-h-screen">
         <div class="col-lg-6">
             <div class="flex justify-center items-center flex-col h-screen">

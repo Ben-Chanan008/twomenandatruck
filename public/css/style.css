@@ -215,4 +215,21 @@ input.floating:focus ~ .float-label, input.floating:not(:placeholder-shown) ~ .f
 }
 .loader .type {
   animation: blink 1.12s infinite;
+}
+
+.check .fa-circle-check {
+  display: none;
+}
+.check:hover > div {
+  border: var(--bg-tertiary) 2px solid;
+}
+
+.checkbox:checked + .check .fa-circle-check {
+  display: inline-block;
+}
+.checkbox:checked + .check .fa-circle {
+  display: none;
+}
+.checkbox:checked + .check > div {
+  border: var(--bg-tertiary) 2px solid;
 }/*# sourceMappingURL=style.css.map */
