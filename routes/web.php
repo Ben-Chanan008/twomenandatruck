@@ -2,6 +2,8 @@
 
 use App\Models\Service;
 use App\Mail\QuoteStored;
+use App\Mail\AssignedWork;
+use App\Models\JobSchedule;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuoteController;
@@ -48,3 +50,9 @@ Route::middleware('user-access')->group(function (){
         ->name('assign-jobs.store')
         ->withoutMiddleware('user-access');
 });
+
+// Route::get('test', function() {
+//     $job = JobSchedule::where(['id' => 3]);
+//     Mail::to('test@gmail.com')->send(new AssignedWork(($job)));
+//     dd('Sent');
+// });

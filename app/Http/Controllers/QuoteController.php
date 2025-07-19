@@ -9,6 +9,7 @@ use App\Mail\QuoteStored;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ServicesDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 class QuoteController extends Controller
@@ -67,6 +68,10 @@ class QuoteController extends Controller
         $request->validate([
             'user' => ['bail', 'required'],
             'service' => ['bail', 'required'],
+            'initial_deposit' => ['bail', 'required'],
+            'duration' => ['bail', 'required', 'string'],
+            'start_time' => ['bail', 'required', 'date'],
+            'booked_for' => ['bail', 'required', 'date'],
         ]);
 
         $service_details_ids = [];
@@ -99,11 +104,23 @@ class QuoteController extends Controller
             'quote_name' => 'Quote for ' . $user->first_name . ' ' . $user->last_name,
             'price_total' => $prices_total,
         ]);
-        //TODO: Send an email to the user to alert him/her; then notify the app.
-        Mail::to($quote->user)->queue(
-            new QuoteStored($quote)
-        );
 
-        return redirect()->route('admin.quote.index')->with('showPopup', ['message' => 'Quote successfully created!', 'type' =>'success']);
+        if ($quote)
+            if ($quote->services()->attach($service_details_ids)) {
+                $schedule = $quote->schedule()->create([
+                    'initial_deposit' => $request->initial_deposit,
+                    'workers_clock_in_time' => Carbon::parse($request->start_time)->subMinutes(30),
+                    'duration' => $request->duration,
+                    'booked_for' => $request->booked_for,
+                    'start_time' => $request->start_time,
+                    'end_time' => Carbon::parse($request->start_time)->addHours(preg_split('/^[A-Za-z]+$/', $request->duration)[0])
+                ]);
+                if($schedule){
+                    Mail::to($quote->user)->queue(
+                        new QuoteStored($quote)
+                    );
+                    return redirect()->route('admin.quote.index')->with('showPopup', ['message' => 'Quote successfully created!', 'type' => 'success']);
+                }
+            }
     }
 }

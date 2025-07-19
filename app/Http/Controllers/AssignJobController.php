@@ -6,9 +6,11 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
 use App\Models\AssignJob;
-use App\Models\AssignJobWorker;
+use App\Mail\AssignedWork;
 use App\Models\JobSchedule;
 use Illuminate\Http\Request;
+use App\Models\AssignJobWorker;
+use Illuminate\Support\Facades\Mail;
 
 class AssignJobController extends Controller
 {
@@ -73,8 +75,12 @@ class AssignJobController extends Controller
                 $setToWork = UserRole::whereIn('user_id', $ids)
                         ->update(['user_status' => 'working']);
                 if ($setToWork){
-                    if($job->update(['job_completed' => true]))
+                    if($job->update(['job_completed' => true])){
+                        Mail::to($job->users->email)->queue(
+                            new AssignedWork(($job))
+                        );
                         return redirect()->route('assign-jobs.index')->with('showPopup', ['type' => 'success', 'message' => 'Assigned workers successfully']);
+                    }
                 }
             }
         });        

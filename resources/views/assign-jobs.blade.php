@@ -2,6 +2,7 @@
     use Illuminate\Support\Carbon;
 @endphp
 <x-base-struct page="Assign Jobs">
+    <x-popup />
     @push('styles')
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -68,7 +69,7 @@
             </div>
         </section>
     </x-dashboard-navbar>
-
+    {{-- {{ dd($available_jobs->get('booked_for')) }} --}}
     <script>
         const fp = flatpickr("#calendar", {
             inline: true,
@@ -80,7 +81,7 @@
             //         return date.getDay() === 1 || date.getDay() === 5;
             //     }
             // ],
-            disable: ["2025-07-17"],
+            // disable:"",
             minDate: 'today'
         });
 

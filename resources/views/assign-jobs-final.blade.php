@@ -1,7 +1,7 @@
 @php
     use Illuminate\Support\Carbon;
 @endphp
-<x-base-struct>
+<x-base-struct page="Assign A Job">
     <x-dashboard-navbar>
             <section class="p-8 w-1/3">
                 <p class="text-xl mb-4 font-bold">Job</p>
@@ -60,10 +60,14 @@
                                     </div>
                                 </label>
                             </div>
-                        @endforeach
+                            @empty
+                                <p class="text-red-600 font-bold text-center">No available workers</p>
+                        @endforelse
                     </div>
                 </section>
-                <button class="text-center w-[90%] block bg-black text-white mx-auto p-2 rounded-lg my-2">Assign Job</button>
+                @unless ($workers->isEmpty())
+                    <button class="text-center w-[90%] block bg-black text-white mx-auto p-2 rounded-lg my-2">Assign Job</button>
+                @endunless
             </form>
     </x-dashboard-navbar>
 </x-base-struct>

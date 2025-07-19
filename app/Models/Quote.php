@@ -19,7 +19,7 @@ class Quote extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function schedules(): HasOne
+    public function schedule(): HasOne
     {
         return $this->hasOne(JobSchedule::class);
     }
