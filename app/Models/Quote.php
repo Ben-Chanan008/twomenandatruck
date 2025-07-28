@@ -26,6 +26,6 @@ class Quote extends Model
 
     public function services(): BelongsToMany
     {
-        return $this->belongsToMany(ServicesDetail::class, 'job_services');
+        return $this->belongsToMany(ServicesDetail::class, 'job_services')->withTimestamps();
     }
 }

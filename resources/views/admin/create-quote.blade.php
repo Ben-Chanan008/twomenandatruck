@@ -29,6 +29,39 @@
             @enderror
             <div id="checks">
             </div>
+            <label for="deposit" class="font-semibold">Initial Deposit</label>
+            <div class="flex w-1/2 gap-3 mb-3">
+                <select class="p-3 bg-gray-200 w-[100px] rounded-md mt-3" name="currency">                
+                    <option value="CAD" selected>$CAD</option>
+                    <option value="USD">$USD</option>
+                    <option value="EUROS">EUROS</option>
+                </select>
+                <input type="text" id="deposit" name="initial_deposit" class="p-3 bg-gray-200 block w-full rounded-md mt-3" placeholder="500.00"/>
+            </div>
+            @error('initial_deposit')
+                <p class="text-danger msg my-4 text-red-600 text-xs font-semibold">{{ $message }}</p>
+            @enderror
+            <div class="mb-3">
+                <label for="duration" class="font-semibold">Duration</label>
+                <input type="text" id="duration" name="duration" class="p-3 bg-gray-200 block w-1/2 rounded-md mt-3" placeholder="Egs... 4h"/>
+            </div>
+            @error('duration')
+                <p class="text-danger msg my-4 text-red-600 text-xs font-semibold">{{ $message }}</p>
+            @enderror
+            <div class="mb-3">
+                <label for="time" class="font-semibold">Time</label>
+                <input type="time" id="time" name="start_time" class="p-3 bg-gray-200 block w-1/2 rounded-md mt-3"/>
+            </div>
+            @error('time')
+                <p class="text-danger msg my-4 text-red-600 text-xs font-semibold">{{ $message }}</p>
+            @enderror
+            <div>
+                <label for="date" class="font-semibold">Date</label>
+                <input type="date" id="date" name="booked_for" class="p-3 bg-gray-200 block w-1/2 rounded-md mt-3"/>
+            </div>
+            @error('date')
+                <p class="text-danger msg my-4 text-red-600 text-xs font-semibold">{{ $message }}</p>
+            @enderror
             <button type="submit" class="bg-gold p-3 rounded-lg w-full mt-8">Create Quote</button>
         </form>
     </x-dashboard-navbar>

@@ -70,7 +70,7 @@ class QuoteController extends Controller
             'service' => ['bail', 'required'],
             'initial_deposit' => ['bail', 'required'],
             'duration' => ['bail', 'required', 'string'],
-            'start_time' => ['bail', 'required', 'date'],
+            'start_time' => ['bail', 'required', 'date_format:H:i'],
             'booked_for' => ['bail', 'required', 'date'],
         ]);
 
@@ -105,22 +105,32 @@ class QuoteController extends Controller
             'price_total' => $prices_total,
         ]);
 
-        if ($quote)
-            if ($quote->services()->attach($service_details_ids)) {
+        if ($quote){
+            $quote->services()->attach($service_details_ids, ['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+            // if($services){
                 $schedule = $quote->schedule()->create([
                     'initial_deposit' => $request->initial_deposit,
                     'workers_clock_in_time' => Carbon::parse($request->start_time)->subMinutes(30),
                     'duration' => $request->duration,
                     'booked_for' => $request->booked_for,
                     'start_time' => $request->start_time,
-                    'end_time' => Carbon::parse($request->start_time)->addHours(preg_split('/^[A-Za-z]+$/', $request->duration)[0])
+                    'end_time' => Carbon::parse($request->start_time)->addHours((int)substr($request->duration, 0, -1))
                 ]);
                 if($schedule){
                     Mail::to($quote->user)->queue(
                         new QuoteStored($quote)
                     );
-                    return redirect()->route('admin.quote.index')->with('showPopup', ['message' => 'Quote successfully created!', 'type' => 'success']);
+                     return redirect()->route('admin.quote.index')->with('showPopup', ['message' => 'Quote successfully created!', 'type' => 'success']);
                 }
-            }
+        }
+                // dd($schedule);
+                // if($schedule){
+                //     Mail::to($quote->user)->queue(
+                //         new QuoteStored($quote)
+                //     );
+                //     return redirect()->route('admin.quote.index')->with('showPopup', ['message' => 'Quote successfully created!', 'type' => 'success']);
+                //         return redirect()->route('admin.quote.index')->with('showPopup', ['message' => 'Quote successfully created!', 'type' => 'success']);
+                // }
+
     }
 }
