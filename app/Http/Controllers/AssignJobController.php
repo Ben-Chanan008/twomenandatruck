@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\NotifyWorker;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
@@ -76,9 +77,8 @@ class AssignJobController extends Controller
                         ->update(['user_status' => 'working']);
                 if ($setToWork){
                     if($job->update(['job_completed' => true])){
-                        Mail::to($job->users->email)->queue(
-                            new AssignedWork(($job))
-                        );
+                        // dd($job->users()->first()->email);
+                        NotifyWorker::dispatch($job, $job->users()->first()->email);
                         return redirect()->route('assign-jobs.index')->with('showPopup', ['type' => 'success', 'message' => 'Assigned workers successfully']);
                     }
                 }

@@ -2,25 +2,21 @@
 
 namespace App\Mail;
 
-use App\Models\JobSchedule;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Carbon;
+use Illuminate\Queue\SerializesModels;
 
-class AssignedWork extends Mailable
+class WorkerMaintenanceSuccess extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(
-        public JobSchedule $job
-    )
+    public function __construct()
     {
         //
     }
@@ -31,7 +27,7 @@ class AssignedWork extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Job Scheduled for ' . Carbon::parse($this->job->booked_for)->format('jS M Y gA'),
+            subject: 'Worker Maintenance Success', 
         );
     }
 
@@ -41,7 +37,7 @@ class AssignedWork extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.assigned-job',
+            markdown: 'mail.worker-maintenance-success',
         );
     }
 

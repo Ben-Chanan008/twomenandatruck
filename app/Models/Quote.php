@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Notifications\Notifiable;
 
 class Quote extends Model
 {
     //
     protected $guarded = [];
-    use SoftDeletes;
+    use SoftDeletes, Notifiable;
 
     public function user(): BelongsTo
     {

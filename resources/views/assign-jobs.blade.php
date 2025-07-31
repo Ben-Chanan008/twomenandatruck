@@ -17,8 +17,8 @@
     @endpush
     <x-dashboard-navbar>
         <p class="text-3xl p-8">Assign Jobs</p>
-        <section class="grid grid-cols-3 items-start gap-4">
-            <div class="p-8 space-y-8">
+        <section class="grid grid-cols-3 items-start gap-4 h-[90vh] mb-4">
+            <div class="p-8 space-y-8 overflow-y-auto h-full">
                 <p class="text-xl font-semibold">Requested Jobs</p>
                 @unless ($available_jobs->isEmpty())
                     @foreach ($available_jobs as $job)
@@ -84,15 +84,5 @@
             // disable:"",
             minDate: 'today'
         });
-
-        const keepRunning = (task, period = 3) => {
-            let interval = setInterval(task, 5000);
-
-            setTimeout(() => clearInterval(interval), period * 1000)
-        } 
-
-        keepRunning(() => {
-            console.log(fp.parseDate());
-        }, 15)
     </script>
 </x-base-struct>

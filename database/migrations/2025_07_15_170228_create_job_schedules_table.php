@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('booked_for');
             $table->time('start_time');
             $table->time('end_time');
-            $table->boolean('job_completed');
+            $table->boolean('job_assigned');
             $table->timestamps();
             $table->softDeletes();
         });

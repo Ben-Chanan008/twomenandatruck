@@ -39,7 +39,7 @@
             <a href="" class="text-red-600"><i class="far fa-arrow-right-to-line"></i> <span class="ml-3">Sign Out</span></a>
         </div>
     </div>
-    <div class="overflow-y-auto">
+    <div {{ $attributes->merge(['class' => "overflow-y-auto"]) }}>
         {{ $slot }}
     </div>
 </nav>
