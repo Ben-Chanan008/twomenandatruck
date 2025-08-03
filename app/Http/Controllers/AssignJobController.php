@@ -60,7 +60,7 @@ class AssignJobController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validateChecks($request, 'workers_', function ($ids) {
+        return $this->validateChecks($request, 'workers_', function ($ids) {
             $job_id = request()->query()['job'];
 
             $data = [];
@@ -145,6 +145,6 @@ class AssignJobController extends Controller
             ])->onlyInput('errors');
         }
 
-        $callback($checks_ids);
+        return $callback($checks_ids);
     }
 }

@@ -96,6 +96,6 @@ if (quoteFormAdmin) {
 }
 
 
-if (PerformanceNavigationTiming.type == "reload") {
-    console.log(PerformanceNavigationTiming)
-}
+// if (PerformanceNavigationTiming.type == "reload") {
+//     console.log(PerformanceNavigationTiming)
+// }

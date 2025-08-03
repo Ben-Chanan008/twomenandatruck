@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Schedule;
 
 
 class WorkerMaintenance {
-    CONST ICONS = ['pending' => 'clock', 'assigned' => 'pen', 'completed' => 'check'];
+    CONST ICONS = ['pending' => 'clock', 'assigned' => 'pen', 'completed' => 'circle-check'];
 
     public function __invoke()
     {
         //TODO: Change column name to job_assigned, and check if job is not complete
         $assignedJobs = JobSchedule::where(['job_completed' => 1])
-                        ->doesNotHave('jobStatus')
+                        ->doesntHave('jobStatus')
                         ->with('users')
                         ->get();
                         
@@ -53,4 +53,4 @@ class WorkerMaintenance {
     }
 }
 
-Schedule::call(new WorkerMaintenance)->dailyAt('00:00');
+Schedule::call(new WorkerMaintenance)->everyMinute();

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class JobSchedule extends Model
 {
@@ -24,8 +24,8 @@ class JobSchedule extends Model
         return $this->belongsToMany(User::class, 'assign_job_workers');
     }
 
-    public function jobStatus(): HasMany
+    public function jobStatus(): HasOne
     {
-        return $this->hasMany(JobCompletionStatus::class);
+        return $this->hasOne(JobCompletionStatus::class);
     }
 }

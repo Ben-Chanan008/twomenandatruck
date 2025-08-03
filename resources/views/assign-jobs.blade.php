@@ -71,6 +71,7 @@
     </x-dashboard-navbar>
     {{-- {{ dd($available_jobs->get('booked_for')) }} --}}
     <script>
+        
         const fp = flatpickr("#calendar", {
             inline: true,
             // "plugins": [new confirmDatePlugin({})],
@@ -81,7 +82,7 @@
             //         return date.getDay() === 1 || date.getDay() === 5;
             //     }
             // ],
-            // disable:"",
+            disable:["2025-08-08"],
             minDate: 'today'
         });
     </script>

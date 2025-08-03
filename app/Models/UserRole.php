@@ -17,10 +17,4 @@ class UserRole extends Model
         'user_id',
         'user_status'
     ];
-
-    public function jobs(): HasMany
-    {
-        return $this->hasMany(AssignJob::class);
-    }
-    
 }

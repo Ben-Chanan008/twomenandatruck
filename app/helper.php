@@ -19,9 +19,9 @@ function activeLink(string $route, ?string $class): string
  *
  * @return string|null
  */
-function getCurrencySymbol(string $symbol, ?float $price)
+function getCurrencySymbol(string $symbol, ?float $price = null)
 {
-    $currencies = ['cad' => '$CAD', 'pounds' => 'GBP', 'euros' => 'EURO', 'usd' => '$'];
+    $currencies = ['cad' => '$CAD', 'pounds' => 'GBP', 'euros' => '€', 'usd' => '$', 'naira' => '₦'];
     // dd(strval($price) . $currencies[$symbol]);
-    return array_key_exists($symbol, $currencies) ? $currencies[$symbol] . strval($price) : NULL;
+    return array_key_exists($symbol, $currencies) ? $currencies[$symbol] . ' ' . strval($price) : NULL;
 }
