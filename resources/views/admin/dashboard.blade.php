@@ -18,17 +18,17 @@
                 <div class="p-8 bg-gold rounded-md">
                     <i class="far fa-user-visor"></i> 
                     <p class="inline mx-2">Total Clients</p>
-                    <p class="text-3xl mt-4 font-bold">200</p>
+                    <p class="text-3xl mt-4 font-bold" id="client">200</p>
                 </div>
                 <div class="p-8 bg-black  text-white rounded-md">
                     <i class="far fa-user-visor"></i> 
                     <p class="inline mx-2">Total Employees</p>
-                    <p class="text-3xl mt-4 font-bold">50</p>
+                    <p class="text-3xl mt-4 font-bold" id="employee">50</p>
                 </div>
                 <div class="p-8 bg-gold rounded-md">
                     <i class="far fa-user-visor"></i> 
                     <p class="inline mx-2">Total Users</p>
-                    <p class="text-3xl mt-4 font-bold">250</p>
+                    <p class="text-3xl mt-4 font-bold" id="users">250</p>
                 </div>
             </section>
             <header class="font-semibold text-2xl mt-16">Statistics</header>
@@ -133,6 +133,49 @@
     </x-dashboard-navbar>
 
 <script>
+  const clientNumber = document.querySelector('#client');  
+  const employeeNumber = document.querySelector('#employee');  
+  const usersNumber = document.querySelector('#users');  
+  const host = 'http://localhost:8000';
+  const data = ['client', 'employee', 'users'];
+
+    let dataExists = data.find(key => Object.keys(sessionStorage).join(',').includes(key));
+    if(!dataExists){
+        console.log('sent');
+        data.forEach((content) => {
+            fetch(`${host}/api/get-company-data?role=${content}`).then(res => res.json()).then(data => {
+                sessionStorage.setItem(`${content}`, data.data);
+            });
+        });
+    }
+
+    function animateCount(element, finalNumber, duration = 1000) {
+        let start = 0;
+        let startTime = null;
+
+        function update(timestamp) {
+
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const value = Math.floor(progress * finalNumber);
+
+            element.textContent = value;
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = finalNumber;
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    animateCount(clientNumber, sessionStorage.getItem('client'), 1000);
+    animateCount(usersNumber, sessionStorage.getItem('users'), 1000);
+    animateCount(employeeNumber, sessionStorage.getItem('employee'), 1000);
+
+  console.log(usersNumber);  
+
   const ctx = document.getElementById('my-chart');
 
   new Chart(ctx, {
