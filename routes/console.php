@@ -19,8 +19,7 @@ class WorkerMaintenance {
 
     public function __invoke()
     {
-        //TODO: Change column name to job_assigned, and check if job is not complete
-        $assignedJobs = JobSchedule::where(['job_completed' => 1])
+        $assignedJobs = JobSchedule::where(['job_assigned' => 1])
                         ->doesntHave('jobStatus')
                         ->with('users')
                         ->get();

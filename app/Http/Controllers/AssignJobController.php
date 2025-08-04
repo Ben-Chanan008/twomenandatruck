@@ -25,8 +25,8 @@ class AssignJobController extends Controller
             'probation' => 'text-orange-400'
         ];
 
-        $available_jobs = JobSchedule::where(['job_completed' => false])->get();
-        $completed_jobs = JobSchedule::where(['job_completed' => true])->get();
+        $available_jobs = JobSchedule::where(['job_assigned' => false])->get();
+        $completed_jobs = JobSchedule::where(['job_assigned' => true])->get();
 
         return view('assign-jobs', [
             'employees' => $this->getEmployees(),
@@ -76,7 +76,7 @@ class AssignJobController extends Controller
                 $setToWork = UserRole::whereIn('user_id', $ids)
                         ->update(['user_status' => 'working']);
                 if ($setToWork){
-                    if($job->update(['job_completed' => true])){
+                    if($job->update(['job_assigned' => true])){
                         // dd($job->users()->first()->email);
                         NotifyWorker::dispatch($job, $job->users()->first()->email);
                         return redirect()->route('assign-jobs.index')->with('showPopup', ['type' => 'success', 'message' => 'Assigned workers successfully']);

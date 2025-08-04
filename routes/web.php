@@ -1,12 +1,15 @@
 <?php
 
+use App\Models\Role;
+use App\Models\User;
 use App\Models\Service;
 use App\Mail\QuoteStored;
 use App\Mail\AssignedWork;
-use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AssignJobController;
 
 Route::get('/', function () {
@@ -45,13 +48,24 @@ Route::middleware('user-access')->group(function (){
     Route::get('app/admin/assign-jobs/create', [AssignJobController::class, 'create'])->name('assign-jobs.create');
 
     Route::get('app/admin/assign-jobs/jobs', [AssignJobController::class, 'index'])->name('assign-jobs.index');
-    
+
     Route::post('app/admin/assign-jobs/store', [AssignJobController::class, 'store'])
         ->name('assign-jobs.store')
+        ->middleware('auth')
         ->withoutMiddleware('user-access');
+
+    Route::get('app/admin/users', [AdminUserController::class, 'index'])->name('admin-users.index');
+    
+    Route::view('app/admin/create-user', 'admin.create-user', ['roles' => Role::where(['status' => 'active'])->get()])->name('admin-users.create');
+    
+    Route::post('app/admin/store-users', [AuthController::class, 'adminCreateUser'])
+    ->name('admin-users.store')
+    ->middleware('auth')
+    ->withoutMiddleware('user-access');
+
 });
 
-Route::get(uri: 'test', action: function () {
+/* Route::get(uri: 'test', action: function () {
     $users = User::withCount(['roles' => fn ($query) => $query->where(['role' => 'admin'])])->get()->toArray();
 
     $counts = [];
@@ -60,4 +74,4 @@ Route::get(uri: 'test', action: function () {
     $sum = array_sum($counts);
     dd($sum);
 
-});
+}); */

@@ -52,6 +52,40 @@ class AuthController extends Controller
         }
     }
 
+    public function adminCreateUser(Request $request)
+    {
+        $request->validate([
+            'first_name' => ['bail', 'required', 'string'],
+            'last_name' => ['bail', 'required', 'string'],
+            'email' => ['bail', 'required', 'email', Rule::unique('users', 'email')],
+            'role' => ['bail', 'required']
+        ]);
+
+        try {
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'password' => Hash::make('Password12@'),
+            ]);
+
+            /* $role = Role::create([
+                'role' => $request->role,
+                'status' => 'active'
+            ]); */
+
+            UserRole::create([
+                'role_id' => $request->role,
+                'user_id' => $user->id,
+                'user_status' => 'active'
+            ]);
+
+            return redirect()->route('admin-users.index')->with('showPopup', 'User added successfully 😊');
+        } catch (ErrorException $e) {
+            return redirect()->route('admin-users.index')->with( 'showPopup', ['message' => "We're sorry. An error occured!! Getting back to it! 😊", 'type'=> 'error']);
+        }
+    }
+
     public function auth(Request $request)
     {
         $credentials = $request->validate([

@@ -17,10 +17,12 @@
                         <span class="ml-3 font-semibold">Dashboard</span>
                     </div>
                 </a>
-                <div class="bg-gray-200 rounded-md p-3">
-                    <i class="far fa-user-secret"></i>
-                    <span class="ml-3 font-semibold">User</span>
-                </div>
+                <a href="{{ route('admin-users.index') }}">
+                    <div class="bg-gray-200 rounded-md p-3 {{ activeLink(route('admin-users.index'), '!bg-gray-300') }}">
+                        <i class="far fa-user-secret"></i>
+                        <span class="ml-3 font-semibold">User</span>
+                    </div>
+                </a>
                 <a href="{{ route('assign-jobs.index') }}">
                     <div class="bg-gray-200 rounded-md p-3 {{ activeLink(route('assign-jobs.index'), '!bg-gray-300') }}">
                         <i class="far fa-business-time"></i>
@@ -36,7 +38,7 @@
             </div>
         </div>     
         <div class="p-4">
-            <a href="" class="text-red-600"><i class="far fa-arrow-right-to-line"></i> <span class="ml-3">Sign Out</span></a>
+            <a href="{{ route('logout') }}" class="text-red-600"><i class="far fa-arrow-right-to-line"></i> <span class="ml-3">Sign Out</span></a>
         </div>
     </div>
     <div {{ $attributes->merge(['class' => "overflow-y-auto"]) }}>

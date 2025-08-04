@@ -22,6 +22,7 @@ export default {
             },
             gridTemplateColumns: {
                 '1/3': '300px 3fr',
+                '3/1': '3fr 90px',
                 'auto': '1fr auto'
             },
             gridTemplateRows: {
