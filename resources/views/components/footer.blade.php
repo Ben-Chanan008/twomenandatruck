@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex gap-8">
                     <a href=""><i class="fab fa-2x fa-facebook"></i></a>
-                    <a href=""><i class="fab fa-twitter-square"></a>
+                    <a href=""><i class="fab fa-twitter fa-2x"></i></a>
                     <a href=""><i class="fab fa-2x fa-youtube"></i></a>
                     <a href=""><i class="fab fa-2x fa-linkedin"></i></a>
                     <a href=""><i class="fab fa-2x fa-instagram"></i></a>
