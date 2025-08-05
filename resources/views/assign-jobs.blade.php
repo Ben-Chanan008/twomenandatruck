@@ -48,7 +48,7 @@
                 <p class="text-xl font-semibold">Day Availaibilty</p>
                 <div type="text" id="calendar" class="px-8"></div>
             </div>
-            <div class="p-8 space-y-8">
+            <div class="p-8 space-y-8 overflow-y-auto h-full">
                 <p class="text-xl font-semibold text-center">Worker Availability</p>
                 @forelse ($employees as $employee)
                     <div class="bg-gray-200 p-4 justify-between flex gap-4 rounded-md items-center">

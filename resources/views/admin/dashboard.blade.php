@@ -93,39 +93,40 @@
                 </div>
             </div>
             <p class="text-2xl p-4 font-semibold mt-16">Revenue Stream</p>
-            <section class="grid grid-cols-3 grid-rows-1 gap-4">
+            <section class="grid lg:grid-cols-3 grid-cols-1 grid-rows-auto gap-1">
                 {{-- <div class="flex gap-3 w-full"> --}}
-                <div class="p-8 bg-black text-white rounded-md">
+                <div class="p-8 bg-black text-white rounded-md lg:col-span-2 row-span-auto">
                     <i class="far fa-cash-register"></i> 
                     <p class="inline mx-2">Social Media Revenue</p>
-                    <p class="text-3xl mt-4 font-bold">$10,000.00</p>
+                    <p class="text-3xl my-4 font-bold">$10,000.00</p>
+                    <canvas id="my-chart2"></canvas>
                 </div>
-                <div class="p-8 bg-black text-white rounded-md rows-span-3">
+                <div class="p-8 bg-black text-white rounded-md row-span-1">
                     <i class="far fa-cash-register"></i> 
                     <p class="inline mx-2">Merch Revenue</p>
                     <p class="text-3xl mt-4 font-bold">$10,000.00</p>
                 </div>
-                <div class="p-8 bg-gold rounded-md row-span-2">
+                <div class="p-8 bg-gold rounded-md sm:col-span-3">
                     <i class="far fa-dollar-sign"></i> 
                     <p class="inline mx-2">Project funds</p>
-                    <p class="text-4xl mt-4 font-bold">$2,000,000.00</p>
+                    <p class="lg:text-2xl mt-4 font-bold">$2,000,000.00</p>
                     <p class="mt-4">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos natus laudantium commodi in dolor vel atque modi numquam ipsum quae! <br /><br />Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ipsa atque temporibus eveniet ad laudantium quidem vel beatae exercitationem incidunt reprehenderit eligendi eos praesentium fugit numquam neque cum, magni sint modi ratione quis! Molestiae ab unde explicabo repudiandae quisquam pariatur!
                     </p>
                 </div>
-                <div class="p-8 bg-gold rounded-md col-span-2">
+                <div class="p-8 bg-gold rounded-md col-span-3">
                     <i class="far fa-podcast"></i> 
                     <p class="inline mx-2">Media Platforms</p>
                     <div class="flex gap-4 justify-center my-8">
-                        <i class="fab fa-facebook xl:fa-4x fa-3x text-white rounded-lg"></i>
-                        <i class="fab fa-instagram xl:fa-4x fa-3x text-white rounded-lg"></i>
-                        <i class="fab fa-reddit xl:fa-4x fa-3x text-white rounded-lg"></i>
-                        <i class="fab fa-twitter xl:fa-4x fa-3x text-white rounded-lg"></i>
-                        <i class="fab fa-cc-apple-pay xl:fa-4x fa-3x text-white rounded-lg"></i>
-                        <i class="fab fa-microsoft xl:fa-4x fa-3x text-white rounded-lg"></i>
-                        <i class="far fa-watch-fitness xl:fa-4x fa-3x text-white rounded-lg"></i>
-                        <i class="fab fa-google-plus-g xl:fa-4x fa-3x text-white rounded-lg"></i>
-                        <i class="fab fa-google-wallet xl:fa-4x fa-3x text-white rounded-lg"></i>
+                        <i class="fab fa-facebook xl:fa-4x fa-2x text-white rounded-lg"></i>
+                        <i class="fab fa-instagram xl:fa-4x fa-2x text-white rounded-lg"></i>
+                        <i class="fab fa-reddit xl:fa-4x fa-2x text-white rounded-lg"></i>
+                        <i class="fab fa-twitter xl:fa-4x fa-2x text-white rounded-lg"></i>
+                        <i class="fab fa-cc-apple-pay xl:fa-4x fa-2x text-white rounded-lg"></i>
+                        <i class="fab fa-microsoft xl:fa-4x fa-2x text-white rounded-lg"></i>
+                        <i class="far fa-watch-fitness xl:fa-4x fa-2x text-white rounded-lg"></i>
+                        <i class="fab fa-google-plus-g xl:fa-4x fa-2x text-white rounded-lg"></i>
+                        <i class="fab fa-google-wallet xl:fa-4x fa-2x text-white rounded-lg"></i>
                     </div>
                 </div>
             </section>
@@ -174,9 +175,10 @@
     animateCount(usersNumber, sessionStorage.getItem('users'), 1000);
     animateCount(employeeNumber, sessionStorage.getItem('employee'), 1000);
 
-  console.log(usersNumber);  
+  // console.log(usersNumber);
 
-  const ctx = document.getElementById('my-chart');
+    const ctx = document.getElementById('my-chart');
+    const ctx2 = document.getElementById('my-chart2');
 
   new Chart(ctx, {
     type: 'bar',
@@ -197,6 +199,26 @@
         }
       }
     }
+  });
+  new Chart(ctx2, {
+      type: 'bar',
+      data: {
+          labels: [
+              'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+          ],
+          datasets: [{
+              label: '# of Successful Jobs',
+              data: [12, 19, 3, 5, 2, 3, 15, 9, 8, 11, 7, 19],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
   });
 </script>
 </x-base-struct>

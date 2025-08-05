@@ -8,6 +8,7 @@ use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\Rule;
 use ErrorException;
@@ -33,14 +34,14 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            $role = Role::create([
-                'role' => $request->role,
-                'status' => 'active'
-            ]);
+            // $role = Role::create([
+            //     'role' => $request->role,
+            //     'status' => 'active'
+            // ]);
 
             UserRole::create([
-                'roles_id' => $role->id,
-                'users_id' => $user->id,
+                'role_id' => Role::where(['role' => strtolower($request->role)])->first()->id,
+                'user_id' => $user->id,
                 'user_status' => 'active'
             ]);
 
@@ -48,7 +49,8 @@ class AuthController extends Controller
 
             return redirect()->route('home')->with('message', 'Onboarding process successful 😊, Setting up shop 😊');
         } catch (ErrorException $e) {
-            return response()->json(['error' => $e, 'message' => "We're sorry. An error occured!! Getting back to it! 😊"], 500);
+            Log::error($e->getMessage());
+            return redirect()->route('home')->with('showPopup', ['type' => 'error', 'message' => "We're sorry. An error occured!! Getting back to it! 😊"]);
         }
     }
 

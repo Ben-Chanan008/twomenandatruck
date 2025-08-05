@@ -10,7 +10,7 @@
         <div class="col-lg-6 p-4">
             <div class="flex justify-center flex-col items-center min-h-screen">
                 <h3 class="mb-3 text-3xl">Onboarding</h3>
-                <p class="mb-4">Already have an account? <a href="" class="text-gold">Sign in</a></p>
+                <p class="mb-4">Already have an account? <a href="{{ route('signup.view') }}" class="text-gold">Sign up</a></p>
                 <div class="flex mb-3 text-white">
                     <button class="btn bg-primary"><i class="fab fa-google"></i></button>
                     <button class="btn bg-primary"><i class="fab fa-facebook"></i></button>

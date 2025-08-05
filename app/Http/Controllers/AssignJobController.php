@@ -22,7 +22,7 @@ class AssignJobController extends Controller
     {
         $color_codes = [
             'active' => 'text-green-400',
-            'probation' => 'text-orange-400'
+            'probation' => 'text-gray-400'
         ];
 
         $available_jobs = JobSchedule::where(['job_assigned' => false])->get();

@@ -50,13 +50,13 @@
                                     {{ $quote->quote_number }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ getCurrencySymbol('naira', $quote->price_total) }}
+                                    {{ getCurrencySymbol($quote->services()->first()?->currency, $quote->price_total) }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ Carbon::parse($quote->created_at)->format('gA jS F\, Y') }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <i class="far fa-{{ $quote->schedule?->jobStatus?->icon ?? 'clock'}} mr-2"></i>{{ $quote->schedule?->jobStatus?->is_completed ? 'COMPLETED' : 'PENDING' }}
+                                    <i class="far fa-{{ $quote->schedule?->jobStatus?->icon ?? 'clock'}} mr-2"></i>{{ $quote->schedule?->jobStatus?->is_completed ? 'COMPLETED' : ($quote->schedule?->job_assigned ? 'ASSIGNED' : 'PENDING') }}
                                 </td>
                             </tr>
                         @endforeach
@@ -69,7 +69,7 @@
             </div>
             
             @else
-            <p class="text-red-500 text-xl font-semibold">No quotes yet</p>
+            <p class="text-red-500 mx-8 font-semibold">No quotes yet!</p>
         @endunless
         <section class="mt-16">
             <p class="text-2xl p-8">Quotes Total</p>

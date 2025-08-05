@@ -3,9 +3,9 @@
 @endphp
 <x-base-struct page="Assign A Job">
     <x-dashboard-navbar>
-            <section class="p-8 w-1/3">
-                <p class="text-xl mb-4 font-bold">Job</p>
-                <div class="border-2 border-gray-200 rounded-md hover:cursor-pointer transition-colors duration-300">
+            <section class="p-8">
+                <p class="text-xl mb-4 font-bold">Current Job</p>
+                <div class="border-2 border-gray-200 rounded-md w-fit hover:cursor-pointer transition-colors duration-300">
                     <div class="flex items-center m-2 gap-4">
                         <p class="px-2 rounded-sm text-xs text-gold font-semibold bg-gray-200">Client:</p>
                         <p class="font-semibold">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="flex items-center m-2 gap-4">
                         <p class="px-2 rounded-sm text-gold text-xs font-semibold bg-gray-200">Initial Deposit:</p>
-                        <p class="font-semibold">$CAD {{ $job->initial_deposit }}.00</p>
+                        <p class="font-semibold">$CAD {{ $job->initial_deposit }}</p>
                     </div>
                 </div>
             </section>

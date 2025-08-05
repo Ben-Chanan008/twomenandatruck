@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('job_schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Quote::class)->constrained()->cascadeOnDelete();
-            $table->string('initial_deposit');
+            $table->decimal('initial_deposit');
             $table->time('workers_clock_in_time');
             $table->string('duration');
             $table->date('booked_for');

@@ -13,11 +13,11 @@ class AdminUserController extends Controller
     {
         $color_codes = [
             'active' => 'text-green-400',
-            'probation' => 'text-orange-400'
+            'probation' => 'text-gray-400'
         ];
         
         return view('admin.users-index', [
-            'users' => User::with('roles')->withTrashed()->get(),
+            'users' => User::with('roles')->withTrashed()->paginate(5),
             'color_codes' => $color_codes
         ]);
     }

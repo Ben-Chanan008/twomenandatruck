@@ -116,6 +116,7 @@ class QuoteController extends Controller
             $schedule = $quote->schedule()->create([
                 'initial_deposit' => $request->initial_deposit,
                 'workers_clock_in_time' => Carbon::parse($request->start_time)->subMinutes(30),
+                'job_assigned' => 0,
                 'duration' => $request->duration,
                 'booked_for' => $request->booked_for,
                 'start_time' => $request->start_time,
@@ -123,6 +124,8 @@ class QuoteController extends Controller
             ]);
             if($schedule){
                 Notification::send($user, new QuoteStored($quote));
+                $quote->email_sent = 1;
+                $quote->save();
                 return redirect()->route('admin.quote.index')->with('showPopup', ['message' => 'Quote successfully created!', 'type' => 'success']);
             }
         }

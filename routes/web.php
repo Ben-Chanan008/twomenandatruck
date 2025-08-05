@@ -55,9 +55,9 @@ Route::middleware('user-access')->group(function (){
         ->withoutMiddleware('user-access');
 
     Route::get('app/admin/users', [AdminUserController::class, 'index'])->name('admin-users.index');
-    
+
     Route::view('app/admin/create-user', 'admin.create-user', ['roles' => Role::where(['status' => 'active'])->get()])->name('admin-users.create');
-    
+
     Route::post('app/admin/store-users', [AuthController::class, 'adminCreateUser'])
     ->name('admin-users.store')
     ->middleware('auth')
@@ -65,13 +65,13 @@ Route::middleware('user-access')->group(function (){
 
 });
 
-/* Route::get(uri: 'test', action: function () {
-    $users = User::withCount(['roles' => fn ($query) => $query->where(['role' => 'admin'])])->get()->toArray();
+// /* Route::get(uri: 'test', action: function () {
+//     $users = User::withCount(['roles' => fn ($query) => $query->where(['role' => 'admin'])])->get()->toArray();
 
-    $counts = [];
-    foreach($users as $model)
-        $counts[] = $model['roles_count'];    
-    $sum = array_sum($counts);
-    dd($sum);
+//     $counts = [];
+//     foreach($users as $model)
+//         $counts[] = $model['roles_count'];
+//     $sum = array_sum($counts);
+//     dd($sum);
 
-}); */
+// }); */
