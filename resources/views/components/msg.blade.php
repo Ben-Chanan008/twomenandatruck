@@ -1,5 +1,5 @@
 @if(session()->has('message'))
-<div class="absolute w-full h-screen bg-white z-30 loader opacity-0">
+<div class="absolute w-full h-screen bg-white z-30 loader opacity-0 pointer-events-none">
     <div class="grid justify-center items-center h-full">
         <p class="font-semibold type">{{ session('message') }}</p>
     </div>

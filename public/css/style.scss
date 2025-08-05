@@ -152,3 +152,28 @@ input.floating {
         animation: blink 1.12s infinite;
     }
 }
+
+.check{
+    .fa-circle-check{
+        display: none;
+    }
+    &:hover > div{
+        border: var(--bg-tertiary) 2px solid;
+    }
+}
+
+.checkbox{
+    &:checked{
+        + .check {
+            .fa-circle-check{
+                display: inline-block;
+            }
+            .fa-circle{
+                display: none;
+            }
+            > div {
+                border: var(--bg-tertiary) 2px solid;
+            }
+        }    
+    }
+}

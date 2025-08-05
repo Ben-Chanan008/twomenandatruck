@@ -5,8 +5,9 @@
             <a href="{{ route('home') }}">Home</a>
             <a href="{{ route('us') }}">About</a>
             <a href="{{ route('moving') }}">Services</a>
-            <a href="">Meet The Team</a>
-            <a href="">Careers</a>
+            @if(auth()->check())
+                <a href="{{ route('dashboard') }}">Dashboard</a>
+            @endif
         </div>
         {{-- <div class="md:block hidden">
             <x-button><i class="far fa-comment mr-3"></i>Free Quote</x-button>

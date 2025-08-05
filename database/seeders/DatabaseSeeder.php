@@ -3,10 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Sequence;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Module;
+use App\Models\SubModule;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,5 +30,20 @@ class DatabaseSeeder extends Seeder
                 ['role' => 'client'],
                 ['role' => 'employee']
             )->create();
+
+        Module::factory(3)
+            ->sequence(
+                ['module' => 'user', 'description' => 'Module for user actions'],
+                ['module' => 'quote', 'description' => 'Module for quote actions'],
+                ['module' => 'assign-job', 'description' => 'Module for assigning jobs'],
+            )->create();
+/*
+        SubModule::factory(2)
+            ->sequence(
+                ['sub_module' => 'create-user'],
+                ['sub_module' => 'edit-user'],
+            )->forModule(function (Module $module) {
+                return ['module_id' => $module->id];
+            })->create();*/
     }
 }

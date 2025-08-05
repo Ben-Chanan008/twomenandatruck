@@ -3,8 +3,8 @@
     <script>
         const msg = new Msg('.alerts');
         msg.popup({
-            type: 'error',
-            msg: '{{ session('showPopup') }}'
+            type: '{{ session('showPopup.type') ?? 'error' }}',
+            msg: '{{ session('showPopup.message') ?? session('showPopup') }}'
         });
     </script>
 @endif

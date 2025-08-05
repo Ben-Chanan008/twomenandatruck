@@ -1,4 +1,4 @@
-<x-base-struct>
+<x-base-struct page="Login">
     <div class="grid grid-cols-2 min-h-screen">
         <div class="col-lg-6">
             <div class="flex justify-center items-center flex-col h-screen">
@@ -10,7 +10,7 @@
         <div class="col-lg-6 p-4">
             <div class="flex justify-center flex-col items-center min-h-screen">
                 <h3 class="mb-3 text-3xl">Onboarding</h3>
-                <p class="mb-4">Already have an account? <a href="" class="text-gold">Sign in</a></p>
+                <p class="mb-4">Already have an account? <a href="{{ route('signup.view') }}" class="text-gold">Sign up</a></p>
                 <div class="flex mb-3 text-white">
                     <button class="btn bg-primary"><i class="fab fa-google"></i></button>
                     <button class="btn bg-primary"><i class="fab fa-facebook"></i></button>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group flex flex-row mt-4 items-center">
                             <div>
-                                <input type="checkbox" id="check" class="form-control-check">
+                                <input type="checkbox" id="check" class="form-control-check" name="remember_me">
                                 <label for="check" class="box-content"></label>
                             </div>
                             <span class="text-sm font-semibold ms-2">Remember Me</span>

@@ -1,7 +1,16 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Service;
+use App\Mail\QuoteStored;
+use App\Mail\AssignedWork;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AssignJobController;
 
 Route::get('/', function () {
     return view('home');
@@ -21,6 +30,48 @@ Route::get('app/signout', [AuthController::class, 'logout'])->name('logout')->mi
 Route::post('app/onboarding', [AuthController::class, 'onboarding'])->name('sign-up');
 Route::post('app/login', [AuthController::class, 'auth'])->name('sign-in');
 
-Route::view('app/dashboard', 'dashboard')->name('dashboard')->middleware('user-access');
+Route::middleware('user-access')->group(function (){
+    Route::view('app/dashboard', 'admin.dashboard')->name('dashboard');
 
-// Route::resource('app/user', AuthController::class);
+    Route::get('app/admin/quote/create', [QuoteController::class, 'showAdminQuote'])->name('admin.quote.create');
+
+    Route::post('app/admin/quote/store', [QuoteController::class, 'adminStore'])->name('admin.quote.store');
+
+    Route::post('app/quote/{user}/store', [QuoteController::class, 'store'])->name('quote.store')->withoutMiddleware('user-access');
+
+    Route::view('app/quote/create', 'quote', [
+        'services' => Service::all()
+    ])->name('quote.create');
+
+    Route::get('app/admin/quotes', [QuoteController::class, 'index'])->name('admin.quote.index');
+
+    Route::get('app/admin/assign-jobs/create', [AssignJobController::class, 'create'])->name('assign-jobs.create');
+
+    Route::get('app/admin/assign-jobs/jobs', [AssignJobController::class, 'index'])->name('assign-jobs.index');
+
+    Route::post('app/admin/assign-jobs/store', [AssignJobController::class, 'store'])
+        ->name('assign-jobs.store')
+        ->middleware('auth')
+        ->withoutMiddleware('user-access');
+
+    Route::get('app/admin/users', [AdminUserController::class, 'index'])->name('admin-users.index');
+
+    Route::view('app/admin/create-user', 'admin.create-user', ['roles' => Role::where(['status' => 'active'])->get()])->name('admin-users.create');
+
+    Route::post('app/admin/store-users', [AuthController::class, 'adminCreateUser'])
+    ->name('admin-users.store')
+    ->middleware('auth')
+    ->withoutMiddleware('user-access');
+
+});
+
+// /* Route::get(uri: 'test', action: function () {
+//     $users = User::withCount(['roles' => fn ($query) => $query->where(['role' => 'admin'])])->get()->toArray();
+
+//     $counts = [];
+//     foreach($users as $model)
+//         $counts[] = $model['roles_count'];
+//     $sum = array_sum($counts);
+//     dd($sum);
+
+// }); */

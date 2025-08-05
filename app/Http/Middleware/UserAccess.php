@@ -40,22 +40,19 @@ class UserAccess
                 foreach ($submodules as $submodule) {
                     $routes = $submodule->routes->all();
                     foreach ($routes as $route) {
-                        if (URL::to($route->source) === $incoming_request) {
+                        if (URL::to(path: $route->source) === $incoming_request) {
                             return $next($request);
-                        } else {
-                            /* Uncomment for debugging purposes */
-                            // dd(URL::current());
-                            return redirect()
-                                ->to(URL::previous() === URL::current() ? route('home') : URL::previous())
-                                ->with('showPopup', "You don't have access to this route");
                         }
+
+                        /* Uncomment for debugging purposes */
+                        // dd(URL::to(path: $route->source));
                     }
                 }
             }
 
             return redirect()
                 ->to(URL::previous() === URL::current() ? route('home') : URL::previous())
-                ->with('showPopup', 'Server Error occured');
+                ->with('showPopup', "You don't have access to this route");
         }
 
         return redirect()->route('signin.view');

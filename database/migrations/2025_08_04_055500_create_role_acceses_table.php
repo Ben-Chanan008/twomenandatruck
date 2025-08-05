@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Role;
+use App\Models\SubModule;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('role_accesses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id')->references('id')->on('roles')->cascadeOnDelete();
-            $table->foreignId('sub_module_id')->references('id')->on('sub_modules')->cascadeOnDelete();
+            $table->foreignIdFor(Role::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(SubModule::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
