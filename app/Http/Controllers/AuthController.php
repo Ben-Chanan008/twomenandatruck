@@ -92,7 +92,7 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required', Password::min(8)mixedCase()->symbols()],
+            'password' => ['required', Password::min(8)->mixedCase()->symbols()],
         ]);
 
         $remember = $request->remember_me === 'on' ? true : false;
