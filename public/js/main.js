@@ -46,7 +46,7 @@ if(checkBox){
 
 if (quoteFormAdmin) {
     const checks = document.querySelector('#checks'),
-        host = 'http://127.0.0.1:8000';
+        host = 'https://tmaat.com';
     quoteFormAdmin.addEventListener('change', (e) => {
         let serviceId = quoteFormAdmin.value;
         
