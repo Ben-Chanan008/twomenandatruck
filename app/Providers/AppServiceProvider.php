@@ -37,5 +37,8 @@ class AppServiceProvider extends ServiceProvider
         Response::macro('success', function (?string $message, array|object|null $data){
             return response()->json(['message' => $message ?? 'Request was a success', 'data' => $data], 200);
         });
+
+        if(env('AP_ENV') === 'production')
+            URL::forceScheme('https');
     }
 }
