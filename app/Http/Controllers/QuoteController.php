@@ -130,4 +130,21 @@ class QuoteController extends Controller
             }
         }
     }
+
+    public function edit(Quote $quote)
+    {
+        return view('admin.edit-quote', ['quote' => $quote, 'users' => User::all()]);
+    }
+
+    public function update(Quote $quote)
+    {
+        $quote->update([
+            'user_id' => $quote->user->id,
+            'quote_number' => $quote->quote_number,
+            'quote_name' => $quote->user->quote_name,
+            'price_total' => $quote->prices_total,
+        ]);
+
+        return redirect()->route('admin.quote.index')->with('showPopup', ['type' => 'success', 'message' => 'Quote updated successfully!']);
+    }
 }

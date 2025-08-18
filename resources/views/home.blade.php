@@ -46,7 +46,7 @@
         <p class="text-5xl font-bold text-center anton mb-8">WHAT WE <span class="text-gold">OFFER?</span></p>
         <span class="text-center block leading-relaxed md:px-0 px-8 mb-4"> For over 35 years, we have and still offer comprehensive home and business <br /> moving services, professional packing and unpacking services, as well as storage and junk removal services. </span>
         <img src="../../images/moving.jpeg" alt="" class="h-[500px] min-w-full object-cover"/>
-        <div class="grid md:grid-cols-5 grid-cols-1 md:px-32 px-8">
+        <div class="grid md:grid-cols-5 grid-cols-1 xl:px-32 px-4">
             <div class="bg-gold p-8 cursor-pointer service">
                 <i class="far text-gold fa-truck mb-8 text-white"></i>
                 <p class="text-3xl mb-3 font-semibold">We Move <br> Locally</p>

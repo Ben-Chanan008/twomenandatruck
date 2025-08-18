@@ -50,6 +50,7 @@
             </div>
             <div class="p-8 space-y-8 overflow-y-auto h-full">
                 <p class="text-xl font-semibold text-center">Worker Availability</p>
+                {{-- s{{ $employees->links() }} --}}
                 @forelse ($employees as $employee)
                     <div class="bg-gray-200 p-4 justify-between flex gap-4 rounded-md items-center">
                         <div class="flex gap-3">

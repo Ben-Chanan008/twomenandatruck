@@ -146,6 +146,9 @@
         data.forEach((content) => {
             fetch(`${host}/api/get-company-data?role=${content}`).then(res => res.json()).then(data => {
                 sessionStorage.setItem(`${content}`, data.data);
+                animateCount(clientNumber, sessionStorage.getItem(`${content}`), 1000);
+                animateCount(usersNumber, sessionStorage.getItem(`${content}`), 1000);
+                animateCount(employeeNumber, sessionStorage.getItem(`${content}`), 1000);
             });
         });
     }
@@ -171,10 +174,9 @@
         requestAnimationFrame(update);
     }
 
-    animateCount(clientNumber, sessionStorage.getItem('client'), 1000);
-    animateCount(usersNumber, sessionStorage.getItem('users'), 1000);
-    animateCount(employeeNumber, sessionStorage.getItem('employee'), 1000);
-
+    animateCount(clientNumber, sessionStorage.getItem(`employee`), 1000);
+    animateCount(usersNumber, sessionStorage.getItem(`users`), 1000);
+    animateCount(employeeNumber, sessionStorage.getItem(`client`), 1000);
   // console.log(usersNumber);
 
     const ctx = document.getElementById('my-chart');

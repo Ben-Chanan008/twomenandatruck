@@ -17,8 +17,17 @@ class AdminUserController extends Controller
         ];
         
         return view('admin.users-index', [
-            'users' => User::with('roles')->withTrashed()->paginate(5),
+            'users' => User::with('roles')->withTrashed()->latest()->paginate(5),
             'color_codes' => $color_codes
         ]);
+    }
+
+    public function delete($id)
+    {
+        // dd(User::all()->toArray());
+        $user = User::findOrFail($id);
+        $user->roles()->update(['user_status' => 'fired']);
+
+        return back()->with('showPopup', ['type' => 'success', 'message' => 'User deleted Successfully!']);
     }
 }

@@ -125,7 +125,7 @@ class AssignJobController extends Controller
             ->whereNot(fn ($query) => $query->where(['user_status' => 'fired'])->orWhere(['user_status' => 'working']))
             ->pluck('user_id');
         
-        $employees = User::whereIn('id', $employee_ids)->with('roles')->get();
+        $employees = User::whereIn('id', $employee_ids)->with('roles')->latest()->paginate(5);
         return $employees;
     }
 

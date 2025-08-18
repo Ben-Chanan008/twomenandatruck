@@ -65,6 +65,9 @@ Route::middleware('user-access')->group(function (){
 
 });
 
+Route::get('app/admin/users/delete/{id}', [AdminUserController::class, 'delete'])->name('delete-user');
+// Delete a user
+
 // /* Route::get(uri: 'test', action: function () {
 //     $users = User::withCount(['roles' => fn ($query) => $query->where(['role' => 'admin'])])->get()->toArray();
 

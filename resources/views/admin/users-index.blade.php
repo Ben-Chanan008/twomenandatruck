@@ -1,4 +1,5 @@
 <x-base-struct page="Users">
+    <x-popup />
     <x-dashboard-navbar> 
         <section class="p-8 flex justify-between">
             <p class="text-3xl">Users</p>
@@ -6,6 +7,18 @@
                 <i class="far fa-plus mr-2"></i> 
                 <span>Add User</span>
             </a>
+        </section>
+        <section class="px-8 my-3">
+            <form action="#" method="post">
+                @csrf
+                <div class="flex gap-4 items-center">
+                    <div class="flex gap-3 flex-auto bg-gray-200 p-3 rounded-md">
+                        <button class=""><i class="far fa-magnifying-glass"></i></button>
+                        <input type="text" name="filter" class="bg-transparent w-full outline-none" placeholder="Search here..."/>
+                    </div>
+                    <i class="far fa-bars-filter"></i>
+                </div>
+            </form>
         </section>
         <p class="mx-8 mb-2 font-semibold"><i class="far fa-user-circle mr-2 text-gold"></i>All Users</p>
         <section class="space-y-4 mx-8 p-4">
@@ -17,7 +30,9 @@
                             <div class="flex flex-col gap-1">
                                 <div class="font-bold text-xs flex gap-3 items-center">
                                     <span class="{{ $color_codes[$user?->roles?->first()?->getOriginal('pivot_user_status')] ?? 'text-red-600' }}">
-                                        {{ Str::title($user?->roles?->first()?->getOriginal('pivot_user_status') ?? 'invalid')}}
+                                        {{ Str::title(
+                                            $user?->roles?->first()?->getOriginal('pivot_user_status') ? $user?->roles?->first()?->getOriginal('pivot_user_status') :'invalid'
+                                            )}}
                                     </span>
                                     <div class="h-1 w-1 bg-gold rounded-full"></div>
                                     <span class="text-blue-400 ">{{ Str::title($user?->roles?->first()?->role)}}</span>
@@ -32,7 +47,7 @@
                         <a href="#">
                             <i class="far fa-pencil text-gold"></i>
                         </a>
-                        <a href="#">
+                        <a href="{{ route('delete-user', $user->id) }}" class={{ !$user->deleted_at ? '' : 'a-disabled'}}>
                             <i class="far fa-trash text-red-600"></i>
                         </a>
                     </div>

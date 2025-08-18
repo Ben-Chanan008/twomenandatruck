@@ -43,4 +43,7 @@ html{
         @apply rounded-lg flex flex-col justify-center p-8 items-center;
         border: 2px solid var(--black);
     }
+    .a-disabled, .a-disabled * {
+        @apply pointer-events-none !text-gray-400 cursor-not-allowed;
+    }
 }
